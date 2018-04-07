@@ -12,4 +12,4 @@ This is a collection for the python scripts we use in our research for post-proc
 - Plot1D
 - Plot2D
 - Interpolation/Extrapolation
-- ...
+- SolveEquations
