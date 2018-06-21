@@ -1,0 +1,8 @@
+{
+    // Controls the font size in pixels.
+    "editor.fontSize": 24,
+    "python.linting.enabled": true,
+    // Automatically add brackets for functions.
+    "python.autoComplete.addBrackets": true,
+    "python.terminal.executeInFileDir": true
+}
