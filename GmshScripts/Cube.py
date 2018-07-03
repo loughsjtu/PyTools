@@ -36,7 +36,7 @@ class Cube:
 
     def SetLineStartIndex(self,i):
         self.LineStartIndex=i 
-        i+=6 
+        i+=12 
         return i  
 
     def SetPlaneSurfaceStartIndex(self,i):
@@ -69,16 +69,16 @@ class Cube:
         self.Line=''
         for i in range(8):
             if i==4-1:
-                i1=1+self.LineStartIndex-1
+                i1=1+self.PointStartIndex-1
             elif i==8-1:
-                i1=5+self.LineStartIndex-1
+                i1=5+self.PointStartIndex-1
             else:
-                i1=i+1+self.LineLoopStartIndex
-            str='Line(%5d)={%5d,%5d};\n'%(i+self.LineStartIndex,i+self.LineStartIndex,i1)
+                i1=i+1+self.PointStartIndex
+            str='Line(%5d)={%5d,%5d};\n'%(i+self.LineStartIndex,i+self.PointStartIndex,i1)
             self.Line+=str
         for i in range(4):
-            i1=i+4+self.LineStartIndex
-            str='Line(%5d)={%5d,%5d};\n'%(i+self.LineStartIndex+8,i+self.LineStartIndex,i1)
+            i1=i+4+self.PointStartIndex
+            str='Line(%5d)={%5d,%5d};\n'%(i+self.LineStartIndex+8,i+self.PointStartIndex,i1)
             self.Line+=str
         #====> For line loop and plane surface
         self.LineLoop=''
@@ -156,6 +156,8 @@ class Cube:
         inp.write(self.Line)
         inp.write(self.LineLoop)
         inp.write(self.PlaneSurface)
+        inp.write(self.SurfaceLoop)
+        inp.write(self.Volume)
         inp.write('\n\n')    
 
 
@@ -169,24 +171,26 @@ SurfaceLoopIndex=1;VolumeIndex=1
 
 Cubes=[]
 
-cube1=Cube(1,1,1,1,1,1,0.05)
-cube1.SetPointStartIndex(PointIndex)
-cube1.SetLineStartIndex(LineIndex)
-cube1.SetLineLoopStartIndex(LineLoopIndex)
-cube1.SetPlaneSurfaceStartIndex(PlaneSurfaceIndex)
-cube1.SetSurfaceLoopStartIndex(SurfaceLoopIndex)
-cube1.SetVolumeStartIndex(VolumeIndex)
+cube1=Cube(2,2,2,2,2,2,0.2)
+PointIndex=cube1.SetPointStartIndex(PointIndex)
+print('PointIndex',PointIndex)
+LineIndex=cube1.SetLineStartIndex(LineIndex)
+print('LineStartIndex=',LineIndex)
+LineLoopIndex=cube1.SetLineLoopStartIndex(LineLoopIndex)
+PlaneSurfaceIndex=cube1.SetPlaneSurfaceStartIndex(PlaneSurfaceIndex)
+SurfaceLoopIndex=cube1.SetSurfaceLoopStartIndex(SurfaceLoopIndex)
+VolumeIndex=cube1.SetVolumeStartIndex(VolumeIndex)
 
 Cubes.append(cube1)
 
 
-cube2=Cube(3,1,1,1,1,1,0.02)
-cube2.SetPointStartIndex(PointIndex)
-cube2.SetLineStartIndex(LineIndex)
-cube2.SetLineLoopStartIndex(LineLoopIndex)
-cube2.SetPlaneSurfaceStartIndex(PlaneSurfaceIndex)
-cube2.SetSurfaceLoopStartIndex(SurfaceLoopIndex)
-cube2.SetVolumeStartIndex(VolumeIndex)
+cube2=Cube(2,2,2,0.5,0.5,0.5,0.1)
+PointIndex=cube2.SetPointStartIndex(PointIndex)
+LineIndex=cube2.SetLineStartIndex(LineIndex)
+LineLoopIndex=cube2.SetLineLoopStartIndex(LineLoopIndex)
+PlaneSurfaceIndex=cube2.SetPlaneSurfaceStartIndex(PlaneSurfaceIndex)
+SurfaceLoopIndex=cube2.SetSurfaceLoopStartIndex(SurfaceLoopIndex)
+VolumeIndex=cube2.SetVolumeStartIndex(VolumeIndex)
 
 Cubes.append(cube2)
 
